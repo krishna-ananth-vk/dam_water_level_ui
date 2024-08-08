@@ -18,8 +18,8 @@ const MapContainer = () => {
         console.log('datainMap', { tokenData });
         const map = new MapLibreMap({
             container: "central-map",
-            center: [0, 0],
-            zoom: 0,
+            center: [77.6472978, 13.0085519],
+            zoom: 15,
             style: "https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json",
             transformRequest: (url, resourceType) => {
                 url = url + `?api_key=${OLA_MAPS_API_KEY}`;
