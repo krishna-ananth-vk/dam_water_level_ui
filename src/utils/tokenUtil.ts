@@ -6,8 +6,6 @@ import { getTokenData, persistToken } from './localStorage';
 
 export const getBearerTokenForSession = async () => {
 
-    try {
-       
         try {
 
             const storedTokenData = getTokenData();
@@ -34,13 +32,12 @@ export const getBearerTokenForSession = async () => {
                 console.log('tokenData', {tokenData: tokenData.responseBody});
                 tokenToStore.created_at = new Date().getTime();
                 persistToken(tokenToStore);
+                return tokenToStore;
             }
         } catch (error) {
             console.log('tokenData', {tokenData: error});
-        
+            return null;
+            
         }
-        return null;
-    } catch (error) {
-        return null;
-    }
+    
 };
