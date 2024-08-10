@@ -5,6 +5,8 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import useStore from "@/store/store";
 import { Store } from "@/store/types";
 import { OLA_MAPS_API_KEY } from "@/utils/appwrite";
+import { addMarkerForDam } from "./MapContainerUtils";
+import { DAM_NAMES } from "@/utils/dams";
 
 const MapContainer = () => {
 
@@ -18,8 +20,12 @@ const MapContainer = () => {
         console.log('datainMap', { tokenData });
         const map = new MapLibreMap({
             container: "central-map",
-            center: [77.6472978, 13.0085519],
+            center: [76.0, 10.0],
             zoom: 15,
+            bounds: [
+                [76.0, 8.0],  // Southwest coordinates
+                [77.5, 13.0]  // Northeast coordinates
+            ],
             style: "https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json",
             transformRequest: (url, resourceType) => {
                 url = url + `?api_key=${OLA_MAPS_API_KEY}`;
@@ -31,6 +37,11 @@ const MapContainer = () => {
             visualizePitch: true,
         });
         map.addControl(nav, "top-left");
+
+        addMarkerForDam(DAM_NAMES, map);
+
+        // add dam locations
+
     }, [mapReady]);
 
     return (

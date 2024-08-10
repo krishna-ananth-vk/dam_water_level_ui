@@ -1,6 +1,6 @@
 import { TokenDataType } from '@/types/TokenDataType';
 import { functions, getBearerTokenFunctionId } from './appwrite';
-import { isJsonString, isObjectValidAndNotEmpty } from './dataValidations';
+import { isValidJsonString, isObjectNotEmpty } from './dataValidations';
 import { addOrSubtractSeconds } from './dateUtil';
 import { getTokenData, persistToken } from './localStorage';
 
@@ -10,7 +10,7 @@ export const getBearerTokenForSession = async () => {
 
             const storedTokenData = getTokenData();
             const currentTime = new Date().getTime();
-            if(isObjectValidAndNotEmpty<TokenDataType>(storedTokenData)){
+            if(isObjectNotEmpty<TokenDataType>(storedTokenData)){
                 const {created_at, expires_in} = storedTokenData;
 
                 const expire_at = addOrSubtractSeconds(new Date(created_at), expires_in).getTime();
@@ -27,7 +27,7 @@ export const getBearerTokenForSession = async () => {
             // }
             
             const tokenData = await tokenDataPromise;
-            if(isJsonString(tokenData.responseBody)){
+            if(isValidJsonString(tokenData.responseBody)){
                 const tokenToStore = JSON.parse(tokenData.responseBody);
                 console.log('tokenData', {tokenData: tokenData.responseBody});
                 tokenToStore.created_at = new Date().getTime();

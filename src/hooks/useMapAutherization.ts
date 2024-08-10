@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { getBearerTokenForSession } from '../utils/tokenUtil';
 import useStore from '@/store/store';
 import { Store } from '@/store/types';
-import { isObjectValidAndNotEmpty } from '@/utils/dataValidations';
+import { isObjectNotEmpty } from '@/utils/dataValidations';
 import { TokenDataType } from '@/types/TokenDataType';
 
 const useMapAutherization = () => {
@@ -10,7 +10,7 @@ const useMapAutherization = () => {
     
     const validateSessionOrRedirect = async () => {
         const sessionData = await getBearerTokenForSession();
-        if(isObjectValidAndNotEmpty<TokenDataType>(sessionData)){
+        if(isObjectNotEmpty<TokenDataType>(sessionData)){
             setTokenData(sessionData);
         }
         console.log('bearerTokenData',{sessionData});

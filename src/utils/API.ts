@@ -3,3 +3,6 @@ export default {
     GET_BEARER_TOKEN: "https://66b4662f4b1e7383c9d1.appwrite.global/",
 
 }
+
+// data source
+// https://dams.kseb.in/?page_id=45

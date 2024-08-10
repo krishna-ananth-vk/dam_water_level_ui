@@ -1,5 +1,5 @@
 import useMapAutherization from "./hooks/useMapAutherization";
-import { isObjectValidAndNotEmpty } from "./utils/dataValidations";
+import { isObjectNotEmpty } from "./utils/dataValidations";
 import MapContainer from "./Containers/MapContainer/MapContainer";
 import { Store } from "./store/types";
 import useStore from "./store/store";
@@ -12,7 +12,7 @@ const AppContainer = () => {
     return (
         <div className="min-h-screen bg-slate-500">
             {
-                isObjectValidAndNotEmpty(tokenData) &&
+                isObjectNotEmpty(tokenData) &&
                 <MapContainer />
             }
 
