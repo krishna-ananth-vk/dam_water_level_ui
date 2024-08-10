@@ -46,7 +46,8 @@ const MapContainer = () => {
 
     return (
         <div
-            style={{ width: "100vw", height: "100vh", overflow: "hidden" }}
+            className="rounded-xl border"
+            style={{ width: "100%", height: "100%", overflow: "hidden" }}
             ref={() => setMapReady(true)}
             id="central-map"
         />

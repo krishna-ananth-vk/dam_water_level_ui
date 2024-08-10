@@ -1,8 +1,8 @@
 import useMapAutherization from "./hooks/useMapAutherization";
 import { isObjectNotEmpty } from "./utils/dataValidations";
-import MapContainer from "./Containers/MapContainer/MapContainer";
 import { Store } from "./store/types";
 import useStore from "./store/store";
+import DataContainer from "./Containers/DataContainer/DataContainer";
 
 const AppContainer = () => {
 
@@ -10,11 +10,36 @@ const AppContainer = () => {
     const tokenData = useStore((state: Store) => state.tokenData);
 
     return (
-        <div className="min-h-screen bg-slate-500">
-            {
-                isObjectNotEmpty(tokenData) &&
-                <MapContainer />
-            }
+        <div className="min-h-screen bg-background dark:bg-slate-800">
+
+            <div className="flex-1 space-y-4 p-8 pt-6">
+                {/* Title part */}
+                <div className="flex items-center justify-between space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tight dark:text-white">
+                        Kerala Dams
+                    </h2>
+                </div>
+
+
+
+                {/* Main part */}
+                <div className="space-y-4">
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+                        <div className="rounded-xl border bg-card text-card-foreground shadow col-span-5" style={{ height: '80vh' }}>
+                            {
+                                isObjectNotEmpty(tokenData) &&
+                                <DataContainer />
+                            }
+                        </div>
+                        <div className="rounded-xl border bg-card text-card-foreground shadow col-span-2">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
 
         </div>
     );

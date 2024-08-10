@@ -1,5 +1,6 @@
 import './App.css'
 import AppContainer from './AppContainer'
+import { ThemeProvider } from "@/components/theme-provider"
 
 
 // This app shows the daily water levels of dams under KSEB.
@@ -7,9 +8,9 @@ import AppContainer from './AppContainer'
 function App() {
 
   return (
-    <>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContainer />
-    </>
+    </ThemeProvider>
   )
 }
 
