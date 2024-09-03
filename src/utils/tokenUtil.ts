@@ -2,12 +2,10 @@ import { TokenDataType } from '@/types/TokenDataType';
 import { functions, getBearerTokenFunctionId } from './appwrite';
 import { isValidJsonString, isObjectNotEmpty } from './dataValidations';
 import { addOrSubtractSeconds } from './dateUtil';
-import { getTokenData, persistToken } from './localStorage';
+import { clearToken, getTokenData, persistToken } from './localStorage';
 
 export const getBearerTokenForSession = async () => {
-
         try {
-
             const storedTokenData = getTokenData();
             const currentTime = new Date().getTime();
             if(isObjectNotEmpty<TokenDataType>(storedTokenData)){
@@ -18,8 +16,6 @@ export const getBearerTokenForSession = async () => {
                 console.log('storedTokenData', {tokenData: storedTokenData});
                     return storedTokenData;
                 }
-
-                
             }
             const tokenDataPromise = functions.createExecution(getBearerTokenFunctionId);
             // if (isObjectValidAndNotEmpty<TokenDataType>(sessionResponse.data)) {
@@ -41,3 +37,8 @@ export const getBearerTokenForSession = async () => {
         }
     
 };
+
+export const clearBearerTokenAndFetchNew = () => {
+    clearToken();
+    getBearerTokenForSession();
+}

@@ -7,6 +7,7 @@ import { Store } from "@/store/types";
 import { OLA_MAPS_API_KEY } from "@/utils/appwrite";
 import { addMarkerForDam } from "./MapContainerUtils";
 import { DAM_NAMES } from "@/utils/dams";
+import { clearBearerTokenAndFetchNew } from "@/utils/tokenUtil";
 
 const MapContainer = () => {
 
@@ -14,6 +15,11 @@ const MapContainer = () => {
     const [mapReady, setMapReady] = useState(false);
     // const tokenData = getToken();
     const tokenData = useStore((state: Store) => state.tokenData);
+
+    const mapApiCallErrorHandler = (error: unknown) => {
+        console.log('MapApiFailed', { error });
+        clearBearerTokenAndFetchNew();
+    }
 
     useEffect(() => {
         if (!mapReady) return;
@@ -37,6 +43,8 @@ const MapContainer = () => {
             visualizePitch: true,
         });
         map.addControl(nav, "top-left");
+
+        map.on('error', (error) => mapApiCallErrorHandler(error));
 
         addMarkerForDam(DAM_NAMES, map);
 

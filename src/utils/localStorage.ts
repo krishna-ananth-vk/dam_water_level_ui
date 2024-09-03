@@ -16,3 +16,8 @@ export const getTokenData = (): TokenDataType|null => {
     }
     return loginState;
 };
+
+
+export const clearToken = () => {
+    localStorage.setItem(TOKEN_DATA, '');
+};
