@@ -3,6 +3,8 @@ import { isObjectNotEmpty } from "./utils/dataValidations";
 import { Store } from "./store/types";
 import useStore from "./store/store";
 import DataContainer from "./Containers/DataContainer/DataContainer";
+import Loader from "./Containers/Loader/loader";
+import { Button } from "./components/ui/button";
 
 const AppContainer = () => {
 
@@ -18,6 +20,9 @@ const AppContainer = () => {
                     <h2 className="text-3xl font-bold tracking-tight dark:text-white">
                         Kerala Dams
                     </h2>
+                    <Button>
+                        Do something
+                    </Button>
                 </div>
 
 
@@ -38,7 +43,7 @@ const AppContainer = () => {
 
                 </div>
             </div>
-
+            <Loader />
 
 
         </div>

@@ -11,6 +11,7 @@
   },
   "proxy": "https://account.olamaps.io",
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
     "appwrite": "^15.0.0",
     "axios": "^1.7.3",
     "class-variance-authority": "^0.7.0",
